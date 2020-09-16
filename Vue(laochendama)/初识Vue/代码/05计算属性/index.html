@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 一般情况下写法 -->
+			<!-- 这种是只要每次用到下面的firstname和lastname都会重新计算一次，所以多次使用该语句会十分消耗性能 -->
+			<!-- <h1>{{firstname+lastname}}</h1> -->
+			
+			<!-- 计算属性 -->
+			<!-- 这种计算属性的fullname作为一个函数返回值，计算过一次firstname+lastname之后多次使用该语句就不用每次都算一次，结果缓存过只要内容不变就不会重新计算，节省性能 -->
+			<!-- <h1>{{fullname}}</h1> -->
+			<h2>{{firstname}}</h2>
+			<hr >
+			<h2>{{lastname}}</h2>
+			<h1>{{fullname2}}</h1>
+			
+		</div>
+		
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					firstname:'张',
+					lastname:'三'
+				},
+				computed:{
+					fullname:function(){
+						console.log(this)
+						//会将计算结果过缓存
+						return this.firstname+this.lastname
+					},
+					// 计算属性的setter（计算属性默认只有 getter，不过在需要时你也可以提供一个 setter：）
+					fullname2:{
+						//getter
+						get:function(){
+							//这里的get只是需要获取值
+							return this.firstname+' '+this.lastname
+						},
+						//setter
+						set:function(newValue){
+							var names = newValue.split(' ')
+							this.firstname = names[0]
+							this.lastname = names[names.length - 1]
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

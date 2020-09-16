@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.page{
+				width: 50vw;
+				height: 100vh;
+				background-color: #8A2BE2;
+				position: fixed;
+				left: 0;
+				top: 0;
+			}
+			.rMenu{
+				width: 50vw;
+				height: 100vh;
+				background-color: #7FFFD4;
+				left: 0;
+				top: 0;
+				transform: translateX(100vw);
+				transition: transform 0.5s;
+			}
+			.active{
+				transform: translateX(50vw);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 小技巧：先写“.page+.rMenu”，然后按tap就可以出来两个div -->
+			<div class="page">
+				首页
+				<button type="button" @click="toggle">切换侧边栏</button>
+			</div>
+			<!-- 注意！：class=“”里的active是一个对象，所以要记得用{}包起来 -->
+			<div class="rMenu" :class="{active:isShow}">
+				侧边栏
+			</div>
+		</div>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					isShow:false
+				},
+				methods:{
+					//方法里面的的事件是一个个函数来的！
+					/*
+					不能写成:toggle：{
+						
+					}
+					*/
+					toggle:function(){
+						//这里的isShow变量要引用需要用this来指定对象的属性
+						//不能写成isShow=!isShow
+						this.isShow = !this.isShow
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

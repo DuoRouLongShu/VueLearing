@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.active{
+				width: 200px;
+				height: 200px;
+				background: blueviolet;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 样式往往需要切换的，那该怎么做 -->
+			<div class="page">
+				
+			</div>
+			<!-- 通过对象的方式决定是否存在某个类 -->
+			<div class="page" :class="{active:isTrue}">
+			<!-- 直接放置对象 -->
+			<div class="page" :class="styleObj">
+			<!-- 放置数组 -->
+			<div class="page" :class="styleArr">
+			<!-- 放置字符串 -->
+			<div class="page" :class="styleStr">
+			<!-- 数组和对象混合 -->
+			<div class="page" :class="styleArrObj">
+		</div>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					isTrue:true,
+					styleObj:{active:true,laochen:true,"col-lg-6":true},
+					styleArr:['col-xs-12','red-bg'],
+					styleStr:'abc as  sad sa d',
+					styleArrObj:['abc',{active:true}]
+				}
+			})
+		</script>
+		
+	</body>
+</html>

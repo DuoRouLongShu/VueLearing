@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#login{
+				background: pink;
+			}
+			#register{
+				background: blueviolet;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{ msg }}</h1>
+			<!-- v-once一次性插入，不会再改变其值，例如msg改成“666”，只有用了v-once的不会改变 -->
+			<h1 v-once>{{ msg }}</h1>
+			
+			<!-- 双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML，你需要使用 v-html 指令： -->
+			<h1>{{htmlTxt}}</h1>
+			<h1 v-html="htmlTxt"></h1>
+			
+			<!-- 修改属性内容 使用v-bind，例如下例中的id就是可以改变的-->
+			<h1 v-bind:id="isLogin">改变属性</h1>
+			
+			<!-- 模板语言的表达式应用 -->
+			<div >
+				{{firstname+lastname}}
+			</div>
+			
+			<!-- 三元运算符 -->
+			<div >
+				{{isVip?"欢迎":"chongzhi!!"}}
+			</div>
+			
+			<!-- 事件的绑定 -->
+			<button type="button" v-on:click="changeBg">改变背景</button>
+			<button type="button" @click="changeBg">改变背景</button>
+			
+			
+		</div>
+		
+		
+		
+		<script type="text/javascript">
+			let app = new Vue({
+				el:"#app",
+				data:{
+					msg:"hello Vue!",
+					htmlTxt:"<span>666v-html才显示</span>",
+					isLogin:"login",
+					firstname:"zhangsan",
+					lastname:"lisi",
+					isVip:true
+				},
+				methods:{
+					changeBg:function(){
+						this.isLogin="register"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

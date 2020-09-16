@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!-- 这里展示了事件可以传参，想传多少个就传多少个 -->
+				<!-- 注意，如果想传具体的事件对象，应该写$event-->
+				<li v-for="item,index in stars" @click="clickMe(index,$event)">索引值：{{index}}----内容：{{item}}</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					count:0,
+					stars:['caixukun','fanbingbign','hhhhh']
+				},
+				methods:{
+					clickMe:function(index,$event){
+						console.log(index)
+						console.log($event)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

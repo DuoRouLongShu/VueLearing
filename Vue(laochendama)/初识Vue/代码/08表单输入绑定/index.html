@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <p>可以用 v-model 指令在表单 <input>、<textarea> 及 <select> 元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 v-model 本质上不过是语法糖。它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。</p> -->
+			<!-- <ul>
+				<li>text 和 textarea 元素使用 value property 和 input 事件</li>
+				<li>checkbox 和 radio 使用 checked property 和 change 事件；</li>
+				<li>select 字段将 value 作为 prop 并将 change 作为事件。</li>
+			</ul> -->
+			
+			
+			<p>{{username}}</p>
+			<h1>单行文本输入框</h1>
+			<input type="text" name="username" id="" value=""  v-model="username"/>
+			<h1>多行文本输入框</h1>
+			<textarea rows="" cols="" v-model="username"></textarea>
+			
+			
+			<h1>复选框：选择喜欢的水果</h1>
+			<span id="" v-for="item in fruits">
+				{{item}}
+				<!-- 注意这里item绑定到value记得用“:value” -->
+				<input type="checkbox" name="fruit" id="" :value="item" v-model="checkFruits" />
+			</span>
+			<h2>{{checkFruits}}</h2>
+			
+			<h1>单选框：选择喜欢的水果</h1>
+			<span id="" v-for="item in fruits">
+				{{item}}
+				<!-- 注意这里item绑定到value记得用“:value” -->
+				<input type="radio" name="radiofruit" id="" :value="item" v-model="radioFruits" />
+			</span>
+			<h2>{{radioFruits}}</h2>
+			
+			<h1>选项框：选择你居住的城市</h1>
+			<select v-model="chooseCity">
+				<option :value ="item" v-for="item in citys">{{item}}</option>
+			</select>
+			<p>选择的城市（采用v-mode双向绑定）：{{chooseCity}}</p>
+		</div>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					username:'小明',
+					checkFruits:[],
+					radioFruits:[],
+					fruits:['apple','orange','pear'],
+					citys:['beijing','shanghai','shenzhen'],
+					chooseCity:''
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			<ul>
+				<li v-for="items in arr">{{items}}</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					msg:'hello Vue',
+					arr:['xiaoming','xiaohong','xiaozhang']
+				},
+				watch:{
+					msg:function(val){
+						console.log(val)
+					},
+					arr:function(val){
+						console.log("listen arr?")
+						console.log(val)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

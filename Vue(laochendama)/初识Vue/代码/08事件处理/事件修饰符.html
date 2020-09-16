@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			当我点击button时，会层层递进触发div的点击事件，简称冒泡点击
+			<div class="btnParent" @click="clickParent">
+				<button type="button" @click="clickEvent">按钮</button>
+			</div>
+			
+			在事件处理程序中调用 event.preventDefault() 或 event.stopPropagation() 是非常常见的需求。尽管我们可以在方法中轻松实现这点，但更好的方式是：方法只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。
+			
+			<!-- stop修饰符，阻止冒泡事件向上传递 -->
+			<div class="btnParent" @click="clickParent">
+				<button type="button" @click.stop="clickEvent">.stop修饰符</button>
+			</div>
+			
+			<!-- prevent阻止默认提交事件 -->
+			<form action="" method="post">
+				使用prevent修饰符，提交事件不再重载页面
+				<br>
+				<input type="text" name="username" id="" value="" />
+				<input type="submit" value="提交" @click.prevent="searchSomething"/>
+			</form>
+		</div>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:'#app',
+				data:{
+					count:0
+				},
+				methods:{
+					clickEvent:function(){
+						console.log("clickEvent")
+					},
+					clickParent:function(){
+						console.log("clickParent")
+					},
+					searchSomething:function(){
+						console.log("阻止提交了")
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

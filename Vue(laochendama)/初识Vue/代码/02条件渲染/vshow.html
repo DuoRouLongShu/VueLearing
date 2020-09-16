@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#pane{
+				width: 200px;
+				height: 200px;
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 点击来回切换显示内容 -->
+		<div id="app">
+			<div id="pane" v-show="isShow">
+				HelloVue!
+			</div>
+			<button type="button" @click="isShow=!isShow">切换显示内容</button>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let app = new Vue({
+				el:"#app",
+				data:{
+					isShow:true,
+				}
+			})
+			/*
+			总结v-if和v-show：
+			v-if：不显示时，第一次就直接不渲染，如果内容已经显示时将其改为不显示（比如v-if=false），
+				  将其内容直接去除（dom文件里的元素去除）。只是渲染一次的用v-if。
+			v-show：不显示时，标签内的内容为：dispaly：none，但是会渲染在dom上。反复需要切换的内容，使用v-show
+			*/
+		</script>
+		
+	</body>
+</html>
